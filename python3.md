@@ -11,7 +11,7 @@ if 'key' in tab:
 
 ### bytes
 
-```
+```python
 a = b'abc'
 
 a[0]
