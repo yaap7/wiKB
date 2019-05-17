@@ -1,5 +1,8 @@
 # wiKB
 
+Link to online pages: (https://yaap7.github.io/wiKB/)
+
+
 ## To be completed
 
 This Knowledge Base is to be completed. Please be patient.
