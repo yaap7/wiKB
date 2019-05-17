@@ -1,9 +1,30 @@
 # Tools
 
-Make a little TOC here.
-
-
-[[TOC]]
-
-
 * [arpspoof](arpspoof.md)
+* [auto-ssh](auto-ssh.md)
+* [bloodhound](bloodhound.md)
+* [crackmapexec](crackmapexec.md)
+* [empire](empire.md)
+* [gobuster](gobuster.md)
+* [hashcat](hashcat.md)
+* [ike-scan](ike-scan.md)
+* [impacket](impacket.md)
+* [index](index.md)
+* [john](john.md)
+* [kerberom](kerberom.md)
+* [macchanger](macchanger.md)
+* [metasploit](metasploit.md)
+* [mimikatz](mimikatz.md)
+* [mqtt](mqtt.md)
+* [ncat](ncat.md)
+* [nmap](nmap.md)
+* [patator](patator.md)
+* [responder](responder.md)
+* [rpcclient](rpcclient.md)
+* [silenttrinity](silenttrinity.md)
+* [smbmap](smbmap.md)
+* [snmpwalk](snmpwalk.md)
+* [socat](socat.md)
+* [sqlmap](sqlmap.md)
+* [ssh-audit](ssh-audit.md)
+* [virtualbox](virtualbox.md)
