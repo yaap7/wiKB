@@ -7,8 +7,8 @@
 
 #### main categories
 
-* [How-to](howto/index.md)
-* [Tools](tools/index.md)
+* [How-to](howto/)
+* [Tools](tools/)
 
 #### single pages
 
