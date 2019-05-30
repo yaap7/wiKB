@@ -1,28 +1,24 @@
 # hashcat
 
-
-
 * [formats](https://hashcat.net/wiki/doku.php?id=example_hashes)
-
-
 
 ## Quick RTFM
 
-
 Example with a wordlist:
 
-```
+``` bash
 hashcat -w 4 -O -a 1000 --username -a 0 -r rules/best64.rule ntds/users_ntlm_1000.hash wordlists/rockyou.txt
 ```
 
 Example with a mask (aka "smart brute force"):
 
-```
+``` bash
 hashcat -w 4 -O -a 1000 --username -a 3 --increment ntds/users_ntlm_1000.hash -1 cC -2 oO0 -3 ?d?s ?1?2nt?2s?2?d?d?3?3?3?3
 ```
 
 Example to show the result:
-```
+
+``` bash
 hashcat -m 1000 --show ntds/users_ntlm_1000.hash
 ```
 
@@ -38,8 +34,6 @@ Options breakdown:
 * `-1 cC`: Create a "variable" which could take `c` and `C`, so the candidate will be `contoso` and `Contoso`.
 * `?1?2nt?2s?2?d?d?3?3?3?3`: the mask to use. Replace any `?1`, `?2`, `?3` and `?4` by their values (see above), and `?d` by all digits, `?l` by lowercase letters, `?u` by uppercase, and `?s` by special characters. See [the wiki](https://hashcat.net/wiki/doku.php?id=mask_attack) for more.
 
-
-
 ## external functions
 
 Require a hash file named like: `user_ntlm_1000.hash`
@@ -48,7 +42,7 @@ Require a hash file named like: `user_ntlm_1000.hash`
 * ends with `<num>` which is the hash format (see above);
 * `*.hash` files contain the hashes, whereas `*.show` files contain the `--show` counterpart.
 
-```
+``` bash
 function print-stats-crack() {
     find . -name '*.hash' | while read fil ; do
         fil_show="${fil%.*}.show"
@@ -74,13 +68,11 @@ function hashcat-show-all() {
 }
 ```
 
-
-
 ## old work with SAP (almost deprecated)
 
 //Toute ressemblance avec des missions ou des comptes admin existants ou ayant existés serait purement fortuite.//
 
-```
+``` bash
 $ cat sapEtoile_bcode
 SAP*:SAP*$9D7FAA188FE794B6
 
@@ -97,19 +89,19 @@ Le BCODE (7700 - SAP CODVN B - genre de MD5 salé avec le username) n'est pas se
 
 Dans un premier temps, on lance une attaque par dico avec des règles sur le BCODE :
 
-```
-$ /root/oclhashcat/oclHashcat-1.31/oclHashcat64.bin --gpu-temp-retain=89 --gpu-temp-abort=95 --username -m 7700 -r rules/d3ad0ne.rule sapEtoile_bcode dico
+``` bash
+/root/oclhashcat/oclHashcat-1.31/oclHashcat64.bin --gpu-temp-retain=89 --gpu-temp-abort=95 --username -m 7700 -r rules/d3ad0ne.rule sapEtoile_bcode dico
 ```
 
-S'il ne tombe pas, on fait un brute-force simple sur toutes les combinaisons. Ce n'est pas très long car il sera forcément &lt;= 8 char.
+S'il ne tombe pas, on fait un brute-force simple sur toutes les combinaisons. Ce n'est pas très long car il sera forcément ≥ 8 char.
 
-```
-$ /root/oclhashcat/oclHashcat-1.31/oclHashcat64.bin --gpu-temp-retain=89 --gpu-temp-abort=95 --username -m 7700 --increment -a 3 sapEtoile_bcode -1 '?u?d?s' '?1?1?1?1?1?1?1?1'
+``` bash
+/root/oclhashcat/oclHashcat-1.31/oclHashcat64.bin --gpu-temp-retain=89 --gpu-temp-abort=95 --username -m 7700 --increment -a 3 sapEtoile_bcode -1 '?u?d?s' '?1?1?1?1?1?1?1?1'
 ```
 
 Une fois que le BCODE est tombé, on se base sur ces infos pour cracker le PASSCODE. On affiche le BCODE trouvé puis on attaque d'abord par dico puis par force brute sur 14 caractères s'il n'est pas trouvé. Cette dernière attaque est réalisable car il n'y a que 4 caractères variable (majuscule/minuscule). En effet, oclHashcat ne permet que de configurer 4 masques maximum.
 
-```
+``` bash
 $ /root/oclhashcat/oclHashcat-1.31/oclHashcat64.bin --gpu-temp-retain=89 --gpu-temp-abort=95 --username -m 7700 --show sapEtoile_bcode | tail -n +3
 SAP*:SAP*$9D7FAA188FE794B6:BN42LS83
 
@@ -121,5 +113,3 @@ $ /root/oclhashcat/oclHashcat-1.31/oclHashcat64.bin --gpu-temp-retain=89 --gpu-t
 C'est un peu long mais il devrait finir par tomber.
 
 Conclusion : Une grosse liste de hash sera longue à casser car les hash sont salés à partir du username. Cependant, si le BCODE est activé, il permet d'avoir une bonne idée du password pour accélerer la phase de crack sur le PASSCODE. C'est donc assez rapide d'obtenir le mot de passe de n'importe quel compte avec cette méthode. Il est donc recommandé de désactiver le BCODE si possible (n'est présent que pour des questions de rétro-compatibilité).
-
-
