@@ -14,4 +14,6 @@
 
 * [PowerShell](powershell.md)
 * [Python3](python3.md)
-
+* [Android](android.md)
+* [Links](links.md)
+* [Misc](misc.md)
