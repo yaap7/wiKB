@@ -4,13 +4,12 @@
 
 ## Table of content
 
+### main categories
 
-#### main categories
+* [How-to](howto/index.md)
+* [Tools](tools/index.md)
 
-* [How-to](howto/)
-* [Tools](tools/)
-
-#### single pages
+### single pages
 
 * [PowerShell](powershell.md)
 * [Python3](python3.md)

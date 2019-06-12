@@ -4,14 +4,14 @@
 
 ### dict
 
-```
+``` python
 if 'key' in tab:
     print(tab['key'])
 ```
 
 ### bytes
 
-```python
+``` python
 a = b'abc'
 
 a[0]
@@ -28,18 +28,16 @@ a.hex()
 
 Simple example with optionnal argument and multiple value argument:
 
-```
+``` python
 argParser = argparse.ArgumentParser(description='Port scan using censys database')
 argParser.add_argument('filter', nargs='+', help='Censys filter to search for. Can be a list of IPs.')
 argParser.add_argument('-c', '--csv', dest='csv', help='Turn on CSV output', action='store_true')
 args = argParser.parse_args()
 ```
 
-
-
 More complex example with mandatory arguments depending on the request type:
 
-```
+``` python
 # Parse arguments
 argParser = argparse.ArgumentParser(description="Active Directory LDAP Enumerator")
 argParser.add_argument('-l', '--server', required=True, dest='ldap_server', help='IP address of the LDAP server.')
@@ -68,12 +66,11 @@ for mandatory_argument in mandatory_arguments[args.request_type]:
         argParser.error('{} argument is mandatory with request type = {}'.format(mandatory_argument, args.request_type))
 ```
 
-
 ## logging
 
 Example to log on stdout instead of the default stderr and to enable DEBUG messages if `args.debug` is enabled:
 
-```
+``` python
 logger = logging.getLogger()
 handler = logging.StreamHandler(sys.stdout)
 if args.debug:
@@ -87,10 +84,9 @@ logger.addHandler(handler)
 
 ## colors
 
-`termcolor`, `colorama` or without any dependance with: https://stackoverflow.com/questions/287871/print-in-terminal-with-colors/21786287#21786287
+`termcolor`, `colorama` or without any dependance with: [https://stackoverflow.com/questions/287871/print-in-terminal-with-colors/21786287#21786287](https://stackoverflow.com/questions/287871/print-in-terminal-with-colors/21786287#21786287)
 
-
-```
+``` python
 for style in range(8):
     for fg in range(30,38):
         s1 = ''
@@ -101,15 +97,12 @@ for style in range(8):
     print('\n')
 ```
 
-
-
-
 ## scapy
 
 Run on a pcap file to extract all TCP data in raw format.
 It is then possible to run a `binwalk -e` to extract known file types.
 
-```
+``` python
 #!/usr/bin/env python3
 
 from scapy.all import *

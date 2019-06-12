@@ -130,6 +130,14 @@ Une liste de liens / tools mis de côté.
 
 
 
+## Audit de configuration
+
+### Windows
+
+* [Windows-Secure-Host-Baseline](https://github.com/nsacyber/Windows-Secure-Host-Baseline) : Configuration guidance for implementing the Windows 10 and Windows Server 2016 DoD Secure Host Baseline settings. #nsacyber
+
+
+
 ## Recommandations
 
 * [Prevent Mimikatz attacks](https://medium.com/blue-team/preventing-mimikatz-attacks-ed283e7ebdd5)
