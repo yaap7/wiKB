@@ -1,5 +1,17 @@
 # How-to
 
-
-TODO: add a TOC here
-
+* [burp_proxy_the_whole_vm](burp_proxy_the_whole_vm.md)
+* [compile_windows_executable_from_linux_host](compile_windows_executable_from_linux_host.md)
+* [create_and_use_a_golden_ticket](create_and_use_a_golden_ticket.md)
+* [create_a_wifi_access_point_for_tests](create_a_wifi_access_point_for_tests.md)
+* [dump_windows_local_hashes](dump_windows_local_hashes.md)
+* [dump_wireshark_userland](dump_wireshark_userland.md)
+* [find_domain_controllers_from_fqdn](find_domain_controllers_from_fqdn.md)
+* [hash_ntlm](hash_ntlm.md)
+* [linux_create_dm-crypt_encrypted_file](linux_create_dm-crypt_encrypted_file.md)
+* [mount_vdi_disk_image](mount_vdi_disk_image.md)
+* [network_management_linux](network_management_linux.md)
+* [network_management_windows](network_management_windows.md)
+* [psexec](psexec.md)
+* [share_a_wired_connection_via_wifi_linux_laptop](share_a_wired_connection_via_wifi_linux_laptop.md)
+* [windows_ad_recon](windows_ad_recon.md)
