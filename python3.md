@@ -82,6 +82,23 @@ handler.setFormatter(formatter)
 logger.addHandler(handler)
 ```
 
+## re
+
+How to use the Regular Expression module of python3.
+
+``` python
+import re
+
+regex = re.compile(r'([A-Za-z]*):\s*(.*)')
+data = 'Username:        \n        user3837'
+matches = regex.findall(data)
+print(matches)
+```
+
+``` text
+[('Username', 'user3837')]
+```
+
 ## colors
 
 `termcolor`, `colorama` or without any dependance with: [https://stackoverflow.com/questions/287871/print-in-terminal-with-colors/21786287#21786287](https://stackoverflow.com/questions/287871/print-in-terminal-with-colors/21786287#21786287)
