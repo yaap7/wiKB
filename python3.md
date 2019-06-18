@@ -43,8 +43,16 @@ if __name__ == "__main__":
 ### dict
 
 ``` python
+tab = {'key' : 'value', 'name' : 'jack', 'city' : 'laval'}
+
 if 'key' in tab:
-    print(tab['key'])
+  print(tab['key'])
+
+for value in tab.values():
+  print(value)
+
+for key, value in tab.items():
+  print('key = {}, value = {}'.format(key, value))
 ```
 
 ### bytes
@@ -98,10 +106,10 @@ mandatory_arguments['search'] = ['domain', 'username', 'password', 'search_filte
 mandatory_arguments['trusts'] = ['domain', 'username', 'password']
 mandatory_arguments['show'] = ['domain', 'username', 'password', 'search_filter']
 if args.request_type not in mandatory_arguments.keys():
-    argParser.error('request type must be one of: {}.'.format(', '.join(mandatory_arguments.keys())))
+  argParser.error('request type must be one of: {}.'.format(', '.join(mandatory_arguments.keys())))
 for mandatory_argument in mandatory_arguments[args.request_type]:
-    if vars(args)[mandatory_argument] is None:
-        argParser.error('{} argument is mandatory with request type = {}'.format(mandatory_argument, args.request_type))
+  if vars(args)[mandatory_argument] is None:
+    argParser.error('{} argument is mandatory with request type = {}'.format(mandatory_argument, args.request_type))
 ```
 
 ## logging
@@ -112,9 +120,9 @@ Example to log on stdout instead of the default stderr and to enable DEBUG messa
 logger = logging.getLogger()
 handler = logging.StreamHandler(sys.stdout)
 if args.debug:
-    logger.setLevel(logging.DEBUG)
+  logger.setLevel(logging.DEBUG)
 else:
-    logger.setLevel(logging.INFO)
+  logger.setLevel(logging.INFO)
 formatter = logging.Formatter(fmt='%(asctime)-19s %(levelname)-8s %(message)s', datefmt='%Y-%m-%d_%H:%M:%S')
 handler.setFormatter(formatter)
 logger.addHandler(handler)
@@ -143,13 +151,13 @@ print(matches)
 
 ``` python
 for style in range(8):
-    for fg in range(30,38):
-        s1 = ''
-        for bg in range(40,48):
-            format = ';'.join([str(style), str(fg), str(bg)])
-            s1 += '\x1b[%sm %s \x1b[0m' % (format, format)
-        print(s1)
-    print('\n')
+  for fg in range(30,38):
+    s1 = ''
+    for bg in range(40,48):
+      format = ';'.join([str(style), str(fg), str(bg)])
+      s1 += '\x1b[%sm %s \x1b[0m' % (format, format)
+    print(s1)
+  print('\n')
 ```
 
 ## scapy
@@ -165,12 +173,12 @@ import sys
 
 
 def main():
-    pkt_cap = rdpcap(sys.argv[1])
-    for pkt in pkt_cap:
-        sys.stdout.buffer.write(bytes(pkt[TCP]))
-    sys.exit(0)
+  pkt_cap = rdpcap(sys.argv[1])
+  for pkt in pkt_cap:
+    sys.stdout.buffer.write(bytes(pkt[TCP]))
+  sys.exit(0)
 
 
 if __name__ == '__main__':
-    main()
+  main()
 ```
