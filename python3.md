@@ -1,5 +1,14 @@
 # Python3
 
+* [script stub](#script_stub)
+* [Standard Types](#standard_types)
+* [format](#format)
+* [argparse](#argparse)
+* [logging](#logging)
+* [re](#re)
+* [colors](#colors)
+* [scapy](#scapy)
+
 ## script stub
 
 ``` python
@@ -69,6 +78,10 @@ b'a'
 a.hex()
 '616263'
 ```
+
+## format
+
+See: [https://pyformat.info/](https://pyformat.info/)
 
 ## argparse
 
