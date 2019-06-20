@@ -1,7 +1,7 @@
 # Python3
 
-* [script stub](#script_stub)
-* [Standard Types](#standard_types)
+* [script stub](#script-stub)
+* [Standard Types](#standard-types)
 * [format](#format)
 * [argparse](#argparse)
 * [logging](#logging)
