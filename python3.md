@@ -5,6 +5,7 @@
 * [format](#format)
 * [argparse](#argparse)
 * [logging](#logging)
+* [json](#json)
 * [re](#re)
 * [colors](#colors)
 * [scapy](#scapy)
@@ -139,6 +140,20 @@ else:
 formatter = logging.Formatter(fmt='%(asctime)-19s %(levelname)-8s %(message)s', datefmt='%Y-%m-%d_%H:%M:%S')
 handler.setFormatter(formatter)
 logger.addHandler(handler)
+```
+
+## json
+
+Pretty print
+
+``` bash
+echo '{"json":"obj"}' | python -m json.tool
+```
+
+``` python
+import json
+
+print(json.dumps(json.loads('["foo", {"bar":["baz", null, 1.0, 2]}]'), indent=2, sort_keys=True))
 ```
 
 ## re
