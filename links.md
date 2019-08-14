@@ -65,6 +65,7 @@ Une liste de liens / tools mis de côté.
 
 ## Web
 
+* [PayloadsAllTheThings](https://github.com/swisskyrepo/PayloadsAllTheThings): A list of useful payloads and bypass for Web Application Security and Pentest/CTF
 * [HTTP Security Headers](https://blog.appcanary.com/2017/http-security-headers.html): Everything you need to know about HTTP security headers
 * [CSRF cheat sheet](https://trustfoundry.net/cross-site-request-forgery-cheat-sheet/): a good CSRF cheat sheet
 
