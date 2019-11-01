@@ -68,16 +68,17 @@ for key, value in tab.items():
 ### bytes
 
 ``` python
-a = b'abc'
-
-a[0]
+>>> a = b'abc'
+>>> a[0]
 97
-
-a[0:1]
+>>> a[0:1]
 b'a'
-
-a.hex()
+>>> a.hex()
 '616263'
+>>> bytes(23) # probably not what you want
+b'\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00'
+>>> bytes([23]) # probably exactly what you want
+b'\x17'
 ```
 
 ## format
