@@ -31,7 +31,6 @@ sudo ip route add 10.20.0.0/24 via 10.0.0.1
 sudo ip route del 10.20.0.0/24 via 10.0.0.1
 ```
 
-
 ## VLAN Management
 
 Install the required kernel module.
