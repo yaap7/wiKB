@@ -23,3 +23,12 @@ of using `TAB` for easier Excel import:
 
 Requirements: [csvkit](https://csvkit.readthedocs.io/en/latest/) and [nmaptocsv](https://github.com/maaaaz/nmaptocsv).
 
+### Convert to HTML
+
+Easy to do with `xsltproc` (because the stylesheet is already included in the XML).
+
+This version is using `parallel` to improve performance (and to learn `parallel` :p).
+
+``` bash
+find . -name '*.xml' | parallel xsltproc -o {.}.html {}
+```
