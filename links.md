@@ -109,6 +109,13 @@ Une liste de liens / tools mis de côté.
 
 * [https://aka.ms/PasswordSprayBestPractices](https://aka.ms/PasswordSprayBestPractices)
 
+
+
+## Dark Web
+
+* [https://dark.fail/](https://dark.fail/): kind of dark web indexer
+
+
 ## misc
 
 * [https://any.run/](https://any.run/): Interactive Online Malware Sandbox
