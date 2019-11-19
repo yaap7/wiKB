@@ -5,7 +5,7 @@
 ```
 mkdir ssh-audit
 cat cibles-ssh.txt | while read host ; do
-    ~/git/ssh-audit/ssh-audit.py -n -v "$host" | tee "ssh-audit/$host.log"
+    ~/tools/ssh-audit/ssh-audit.py -n -v "$host" | tee "ssh-audit/$host.log"
 done
 ```
 
