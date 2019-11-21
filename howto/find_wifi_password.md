@@ -17,3 +17,4 @@ C:\ netsh WLAN show profile name="<YourWPA2Network>" key=clear
 ``` bash
 security find-generic-password -ga "<YourWPA2Network>" | grep "password:"
 ```
+
