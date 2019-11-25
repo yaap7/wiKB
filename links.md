@@ -109,6 +109,8 @@ Une liste de liens / tools mis de côté.
 ### Tools
 
 * [Autochrome](https://www.nccgroup.trust/us/about-us/newsroom-and-events/blog/2017/march/autochrome/): Chromium that does not pollute your Burp's logs
+* [Quieter Firefox](https://www.blackhillsinfosec.com/towards-quieter-firefox/): Firefox that does not pollute your Burp's logs
+
 
 
 ### Cheat Sheets
