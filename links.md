@@ -184,6 +184,21 @@ Une liste de liens / tools mis de côté.
 
 
 
+## Cloud
+
+### AWS
+
+TODO
+
+### Azure/Office365
+
+* [O365 Logs Scripts](https://github.com/renisac/O365-Management-and-Log-Scripts): Security-Focused O365 Management and Log Resources
+* [O365-InvestigationTooling](https://github.com/OfficeDev/O365-InvestigationTooling): low-volume activity data acquisition from the Office 365 Management Activity API
+
+
+
+
+
 ## Architecture
 
 ### Kubernetes
