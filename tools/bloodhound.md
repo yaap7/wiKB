@@ -12,8 +12,16 @@ runas /netonly /user:<domain>\<user> 'powershell.exe'
 ```
 
 In the new term just launched:
+
+
 ```
-.\SharpHound.exe --DomainController 192.168.1.1 -C All -d domain.local --statusinterval 15000 -v
+.\SharpHound.exe -d contoso.local -c All -v --statusinterval 10000
+```
+
+or
+
+```
+.\SharpHound.exe --DomainController 192.168.1.1 -C All -d contoso.local --statusinterval 15000 -v
 ```
 
 
