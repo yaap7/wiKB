@@ -211,3 +211,27 @@ def main():
 if __name__ == '__main__':
   main()
 ```
+
+Run on a pcap file to extract all DNS queries and responses (might be enhanced)
+
+``` python
+#!/usr/bin/env python3
+
+from scapy.all import *
+import sys
+
+
+def main():
+  pkt_cap = rdpcap(sys.argv[1])
+  for pkt in pkt_cap:
+    if pkt.haslayer(DNSQR):
+      query = pkt[DNSQR].qname.decode('utf-8')
+      print('> {}'.format(query))
+    if pkt.haslayer(DNSRR):
+      response = pkt[DNSRR].rdata
+      print('< {}'.format(response))
+  sys.exit(0)
+
+if __name__ == '__main__':
+  main()
+```
