@@ -31,6 +31,79 @@ Perhaps something in:
 * `/data/app/<package_name>/`
 * `/data/app/<package_name>-1/` or another number
 
+## Launch an Android application in a VM using Anbox
+
+Notes about a test done on December 28th, 2019 using an Ubuntu 16.04.6 Xenial LTS (Backbox).
+
+Note: `adb` was already installed.
+
+### Install Anbox
+
+``` bash
+snap install --devmode --beta anbox
+```
+
+### Install the kernel modules
+
+``` bash
+sudo add-apt-repository ppa:morphis/anbox-support
+sudo apt update
+sudo apt install linux-headers-generic anbox-modules-dkms
+```
+
+Enable the modules (or reboot)
+
+``` bash
+sudo modprobe ashmem_linux
+sudo modprobe binder_linux
+```
+
+Install `adb` if needed:
+
+``` bash
+sudo apt install android-tools-adb
+```
+
+The device should now be visible from `adb` using:
+
+``` bash
+adb devices
+```
+
+Or maybe it is needed to launch the session manager? (don't remember)
+
+``` bash
+anbox session-manager
+```
+
+### Install the application
+
+``` bash
+adb install example.apk
+```
+
+### Launch application
+
+``` bash
+anbox launch --package=com.contoso.superapp --component=com.contoso.superapp.MainActivity
+```
+
+### Play with it
+
+It is now possible to listen traffic on the `anbox0` network interface.
+
+Using `adb`, `frida`, `iptables`, Burp Suite, etc. it is possible to do almost everything!
+
+#### Set a proxy
+
+Using `adb` with:
+
+``` bash
+adb shell settings put global http_proxy <ip>:<port>
+```
+
+see: https://stackoverflow.com/questions/31807559/undo-setting-proxy-via-settings-global-in-android/47476009#47476009
+
 ## Mettre en place frida sur un téléphone Android
 
 ### 1. S'assurer que le téléphone est rooté
