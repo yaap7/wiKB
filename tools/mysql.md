@@ -29,7 +29,7 @@ Ici, le compte `munin` aura tous les droits sur la base de données `munin` et u
 ``` mysql
 create database munin;
 create user 'munin'@'localhost' identified by 'P@$$w0rd';
-grant all privileges on 'munin'.* to 'munin'@'localhost';
+grant all privileges on munin.* to 'munin'@'localhost';
 ```
 
 Puis, pour supprimer tout ce qui a été ajouté :
