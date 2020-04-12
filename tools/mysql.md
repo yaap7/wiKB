@@ -63,4 +63,16 @@ use mysql;
 show tables;
 ```
 
+## Sauvegarde et restauration
 
+### Sauvegarde avec mysqldump
+
+``` bash
+mysqldump ---user [user name] ---password=[password] [database name] > [dump_file.sql]
+```
+
+Ou :
+
+``` bash
+mysqldump ---user [user name] ---password=[password] [database name] | gzip -9 > [dump_file.sql.gz]
+```
