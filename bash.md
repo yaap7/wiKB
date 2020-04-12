@@ -16,8 +16,20 @@ function show_usage() {
 }
 
 function debug() {
-    [[ "x$DEBUG" == "x1" ]] && echo "$@"
-    echo -n ''
+  [[ "x$DEBUG" == "x1" ]] && echo "$@"
+  echo -n ''
+}
+
+function info() {
+  echo -e "\e[34mInfo\e[0m: $@"
+}
+
+function success() {
+  echo -e "\e[32mSuccess\e[0m: $@"
+}
+
+function error() {
+  echo -e "\e[31mError\e[0m: $@" >&2
 }
 
 # configuration
