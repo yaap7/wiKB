@@ -76,3 +76,11 @@ Ou :
 ``` bash
 mysqldump ---user [user name] ---password=[password] [database name] | gzip -9 > [dump_file.sql.gz]
 ```
+
+### Restauration avec mysql
+
+``` bash
+# optionnal
+gunzip dump_file.sql.gz
+mysql -u munin -p muninDB < dump_file.sql
+```
