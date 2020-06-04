@@ -14,9 +14,26 @@
 * Qualys [TestSSL](https://www.ssllabs.com/ssltest/): One of the best SSL/TLS analyzer
 * [SecurityHeaders](https://securityheaders.com/): Check the HTTP headers sent by your server
 
+### Protocols Support
+
+* <https://flocon.3fu.me/server_tools/test_url.php>: my own tester (HTTP/2, Brotli, GZip, IPv6, etc.)
+
 ## Compress JPG and PNG Images
 
 Install the dependencies: [jpegtran](https://github.com/mozilla/mozjpeg) and [pngquant](https://pngquant.org/).
+
+``` bash
+# install pngquant
+sudo apt install -y pngquant
+# install jpegtran
+cd ~/tools
+sudo apt install -y make cmake gcc libpng-dev zlib1g-dev zlib1g nasm
+git clone https://github.com/mozilla/mozjpeg
+mkdir build-mozjpeg
+cd build-mozjpeg
+cmake -G"Unix Makefiles" ../mozjpeg
+make -j 4
+```
 
 Use this script: [optimize-img](https://github.com/yaap7/miSCripts/blob/master/optimize-img)
 
