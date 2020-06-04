@@ -36,7 +36,7 @@ Puis, pour supprimer tout ce qui a été ajouté :
 
 ``` mysql
 revoke all privileges, grant option from 'munin'@'localhost';
-# TODO suppression du user
+drop user 'munin'@'localhost';
 drop database munin;
 ```
 
