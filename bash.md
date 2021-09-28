@@ -73,3 +73,9 @@ debug "start of program"
 
 exit 0
 ```
+
+## Variable substitution
+
+``` bash
+mv "$file" "${file%.html}.txt"
+```
