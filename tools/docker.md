@@ -1,15 +1,25 @@
 # docker
 
-## Inspiration
+## Common docker commands
+
+Find the IP address of a container:
+
+``` bash
+docker inspect -f '{{range.NetworkSettings.Networks}}{{.IPAddress}}{{end}}' <container_name_or_id>
+```
+
+## Docker for pentesters
+
+### Inspiration
 
 * this [excellent post](https://blog.ropnop.com/docker-for-pentesters/) from ropnop.
 * one good example in [this article](https://0x00sec.org/t/tricks-of-the-trade-from-5-years-in-offensive-cyber-security/15794) from 0x00sec.
 
-## alpyntest
+### alpyntest
 
 See [here](https://github.com/yaap7/miSCripts/tree/master/alpyntest).
 
-## CyberChef Container
+### CyberChef Container
 
 [Online example](https://gchq.github.io/CyberChef/)
 
@@ -17,13 +27,13 @@ See [here](https://github.com/yaap7/miSCripts/tree/master/alpyntest).
 docker pull remnux/cyberchef
 ```
 
-## Etherpad-lite Container
+### Etherpad-lite Container
 
 ``` bash
 docker pull etherpad/etherpad-lite:lastest
 ```
 
-## postfiledumphere
+### postfiledumphere
 
 Just a memo of [this article](https://0x00sec.org/t/tricks-of-the-trade-from-5-years-in-offensive-cyber-security/15794) from 0x00sec.
 
