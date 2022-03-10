@@ -16,6 +16,7 @@ But if you find it usefull, do not hesitate to let me know or to commit improvem
 
 * [Python3](python3.md)
 * [Bash](bash.md)
+* [JavaScript](javascript.md)
 * [Android](android.md)
 * [PowerShell](powershell.md)
 * [Links](links.md)

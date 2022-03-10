@@ -1,12 +1,14 @@
-## Compile a Windows Executable From a Linux Host
+# Compile a Windows Executable From a Linux Host
 
-Install the cross-compiler.
-```
+Install the cross-compiler:
+
+``` bash
 sudo aptitude install mingw-w64
 ```
 
 In file `adddom.c`:
-```
+
+``` c
 #include <stdlib.h>
 #include <windows.h>
 
@@ -20,6 +22,7 @@ int main(void)
 *Do not forget to modify the group name regarding your environment.*
 
 Then:
-```
+
+``` bash
 i586-mingw32msvc-gcc -static adddom.c -o adddom.exe
 ```
