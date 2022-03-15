@@ -1,5 +1,7 @@
 # wiKB
 
+A "wiki like Knowledge Base".
+
 Link to online pages: [https://yaap7.github.io/wiKB/](https://yaap7.github.io/wiKB/)
 
 ## To be completed

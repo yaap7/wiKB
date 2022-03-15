@@ -1,5 +1,7 @@
 # wiKB
 
+A "wiki like Knowledge Base".
+
 Those are just my personnal notes for when I forget something.
 They are posted without warrantly and are quite outdated.
 
