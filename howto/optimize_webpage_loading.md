@@ -2,7 +2,7 @@
 
 ## Resources
 
-* Google Chrome [LightHouse Extension](https://developers.google.com/web/tools/lighthouse/): Google Chrome extension which mesure a score for performance, accessibility, best practices, SEO, and progressive web app
+* Google Chrome [LightHouse Extension](https://developers.google.com/web/tools/lighthouse/): Google Chrome extension which mesure a score for performance, accessibility, best practices, SEO, and progressive web app (PWA).
 
 ### Performance
 
@@ -14,26 +14,19 @@
 * Qualys [TestSSL](https://www.ssllabs.com/ssltest/): One of the best SSL/TLS analyzer
 * [SecurityHeaders](https://securityheaders.com/): Check the HTTP headers sent by your server
 
+### Accessibility
+
+A checklist: <https://design-accessible.fr/checklist>
+
 ### Protocols Support
 
-* <https://flocon.3fu.me/server_tools/test_url.php>: my own tester (HTTP/2, Brotli, GZip, IPv6, etc.)
+* <https://ywo.fr/test_url.php>: my own tester (HTTP/2, Brotli, GZip, IPv6, etc. and links to other tools).
+
+### Free illustrations
+
+* <https://undraw.co/illustrations>
 
 ## Compress JPG and PNG Images
-
-Install the dependencies: [jpegtran](https://github.com/mozilla/mozjpeg) and [pngquant](https://pngquant.org/).
-
-``` bash
-# install pngquant
-sudo apt install -y pngquant
-# install jpegtran
-cd ~/tools
-sudo apt install -y make cmake gcc libpng-dev zlib1g-dev zlib1g nasm
-git clone https://github.com/mozilla/mozjpeg
-mkdir build-mozjpeg
-cd build-mozjpeg
-cmake -G"Unix Makefiles" ../mozjpeg
-make -j 4
-```
 
 Use this script: [optimize-img](https://github.com/yaap7/miSCripts/blob/master/optimize-img)
 
@@ -41,6 +34,36 @@ Example:
 
 ``` bash
 find . -type f -exec file -i {} \; | grep image | cut -d: -f 1 | xargs ~/tools/miSCripts/optimize-img
+```
+
+## Optimize JavaScript
+
+### Use vanilla JavaScript instead of jQuery
+
+* <https://flaviocopes.com/jquery/>
+* <https://tobiasahlin.com/blog/move-from-jquery-to-vanilla-javascript/>
+
+### Lightweight JavaScript frameworks
+
+Use a light framework such as [svelte](https://svelte.dev/) instead of jQuery, the full Bootstrap, etc.
+It embeds only the part you add at compile time, instead of loading the full framework at each visit of your website.
+
+### Minify JavaScript
+
+``` bash
+uglifyjs -o agency.min.js agency.js
+```
+
+## Optimize CSS
+
+### Lightweight CSS frameworks
+
+Use a light framework such as [Knacss](https://www.knacss.com/) instead of a full bootstrap.
+
+### Minify CSS files
+
+``` bash
+yui-compressor agency.used.css -o agency.used.min.css
 ```
 
 ## Apache Configuration
@@ -72,4 +95,5 @@ Add this configuration to the virtualhost:
 
 ## Enable CloudFlare
 
-Using the (free) CloudFlare service will automatically cache 
+Using the (free) CloudFlare service will automatically cache your website.
+To be continued.
