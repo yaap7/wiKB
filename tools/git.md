@@ -63,3 +63,7 @@ If the branch you are working on is tracking a remote branch, e.g. your local br
 ``` bash
 git push heroku dev:master
 ```
+
+## Ressources
+
+* <https://kubesimplify.com/get-good-at-git>
