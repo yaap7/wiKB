@@ -20,6 +20,30 @@ From a custom SSH server:
 git clone TODO
 ```
 
+## Sign your commits and tags
+
+Reference: <https://docs.github.com/en/authentication/managing-commit-signature-verification/telling-git-about-your-signing-key>
+
+Enable signing globally:
+
+``` bash
+git config --global tag.gpgsign true
+git config --global commit.gpgsign true
+```
+
+Add signing key per repo if you have multiple keys for multiple identities:
+
+``` bash
+$ gpg --list-secret-keys --keyid-format=long
+/Users/hubot/.gnupg/secring.gpg
+------------------------------------
+sec   4096R/3AA5C34371567BD2 2016-03-10 [expires: 2017-03-10]
+uid                          Hubot <hubot@example.com>
+ssb   4096R/4BB6D45482678BE3 2016-03-10
+
+git config user.signingkey 3AA5C34371567BD2
+```
+
 ## How-to - host your own git server
 
 See [this HowTo](../howto/git_host_our_own_server.md).
