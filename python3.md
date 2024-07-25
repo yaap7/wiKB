@@ -87,6 +87,42 @@ b'\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x
 b'\x17'
 ```
 
+## debug_var
+
+debug any (short) variable, human readable
+
+``` python
+def debug_var(var: Any, tabs: int = 0) -> str:
+    retour = ""
+    if var is None:
+        retour = "<None>"
+    elif isinstance(var, str) or isinstance(var, int) or isinstance(var, float):
+        retour = str(var)
+    elif isinstance(var, tuple):
+        retour += "(\n"
+        for i in var:
+            retour += " " * tabs + f"  + {debug_var(i, tabs+2)}\n"
+        retour += " " * tabs + ")"
+    elif isinstance(var, list):
+        retour += "[\n"
+        for i in var:
+            retour += " " * tabs + f"  - {debug_var(i, tabs+2)}\n"
+        retour += " " * tabs + "]"
+    elif isinstance(var, dict):
+        retour += "{\n"
+        for k, v in var.items():
+            retour += (
+                " " * tabs + f"  * {debug_var(k, tabs+2)}: {debug_var(v, tabs+2)}\n"
+            )
+        retour += " " * tabs + "}"
+    else:
+        retour += " " * tabs + f"### Type non supporté ({var.__class__})\n"
+    return retour
+
+# Usage:
+print(debug_var(my_tab))
+```
+
 ## format
 
 See: [https://pyformat.info/](https://pyformat.info/)
