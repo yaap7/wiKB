@@ -80,6 +80,14 @@ git fetch --all --prune
 
 (`git remote update` is not enough!)
 
+## Create aliases
+
+To simply type `git lgo` to launch `git log --oneline`:
+
+``` bash
+git config --global alias.lgo "log --oneline"
+```
+
 ## Push on another branch than the current one
 
 If the branch you are working on is tracking a remote branch, e.g. your local branch `dev` is tracking the `remotes/github/dev`, you still can push to `remotes/heroku/master` by using `git push <remote> <local_branch>:<remote_branch>`. Example:
