@@ -88,6 +88,23 @@ To simply type `git lgo` to launch `git log --oneline`:
 git config --global alias.lgo "log --oneline"
 ```
 
+## Manage tags
+
+Documentation : <https://git-scm.com/book/en/v2/Git-Basics-Tagging>
+
+Create tag on current commit:
+
+``` bash
+git tag -a v1.0 -m "version 1.0"
+```
+
+Push specific tag:
+
+``` bash
+git push origin v1.0
+```
+
+
 ## Push on another branch than the current one
 
 If the branch you are working on is tracking a remote branch, e.g. your local branch `dev` is tracking the `remotes/github/dev`, you still can push to `remotes/heroku/master` by using `git push <remote> <local_branch>:<remote_branch>`. Example:
