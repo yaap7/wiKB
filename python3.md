@@ -29,12 +29,9 @@ if __name__ == "__main__":
     # arguments parsing
     argParser = argparse.ArgumentParser(description="Default description to replace.")
     argParser.add_argument("files", nargs="+", help="Input files to parse.")
-    argParser.add_argument(
-        "-c", "--csv", dest="csv", help="Turn on CSV output", action="store_true"
-    )
-    argParser.add_argument(
-        "-v", "--verbose", dest="debug", help="Turn on debugging", action="store_true"
-    )
+    argParser.add_argument("-o", "--output", required=True, help="Output file")
+    argParser.add_argument("-v", "--verbose", help="Turn on verbose messages", action="store_true")
+    argParser.add_argument("-d", "--debug", help="Turn on debugging", action="store_true")
     args = argParser.parse_args()
     # logging configuration
     logger = logging.getLogger()
@@ -42,16 +39,18 @@ if __name__ == "__main__":
     if args.debug:
         logger.setLevel(logging.DEBUG)
         formatter = logging.Formatter(
-            fmt="%(asctime)-19s %(levelname)-8s %(message)s",
+            fmt="%(asctime)-19s %(levelname)-8s %(name)s %(message)s",
             datefmt="%Y-%m-%d_%H:%M:%S",
         )
     else:
-        logger.setLevel(logging.INFO)
+        if args.verbose:
+            logger.setLevel(logging.INFO)
+        else:
+            logger.setLevel(logging.WARNING)
         formatter = logging.Formatter(fmt="%(message)s", datefmt="%Y-%m-%d_%H:%M:%S")
     handler.setFormatter(formatter)
     logger.addHandler(handler)
     main(args)
-
 ```
 
 ## Standard Types
@@ -167,6 +166,20 @@ if args.request_type not in mandatory_arguments.keys():
 for mandatory_argument in mandatory_arguments[args.request_type]:
   if vars(args)[mandatory_argument] is None:
     argParser.error('{} argument is mandatory with request type = {}'.format(mandatory_argument, args.request_type))
+```
+
+## csv
+
+Example that I use often to output result in a CSV file:
+
+```python
+fichier_resultat = args.output
+logging.debug(f"Writing results in {fichier_resultat}")
+with open(fichier_resultat, "w", newline="") as csvfile:
+    writer = csv.DictWriter(csvfile, fieldnames=headers)
+    writer.writeheader()
+    writer.writerows(vulns)
+logging.info(f"End of script. Results are in {fichier_resultat}")
 ```
 
 ## logging
